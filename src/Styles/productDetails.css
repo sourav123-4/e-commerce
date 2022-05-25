@@ -1,0 +1,18 @@
+.item{
+    display: flex;
+    flex-direction: row;
+    
+}
+.itemdetails{
+    display: flex;
+    flex-direction: column;
+}
+.btn{
+    display: flex;
+    justify-content: center;
+
+}
+.itemdetails>h3{
+    margin:0% 15%;
+    text-align:left;
+}
