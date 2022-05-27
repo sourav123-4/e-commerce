@@ -11,13 +11,12 @@ function ProductDetails() {
   const state = useSelector(state=> state.product.pdetails);
   let dispatch = useDispatch();
   let params= useParams();
-
+  const addhandleclick = () =>{
+    return dispatch(addToCart(state));
+  }
   React.useEffect(() => {
     dispatch(getProductDetails(params.id));
   },[params.id]);
-  React.useEffect(()=>{
-    dispatch(addToCart(state));
-  },[state]);
 
   return (
     <div>
@@ -33,9 +32,7 @@ function ProductDetails() {
               </div>
             </div>
             <div className='btn'>
-              <Button onClick={()=>{
-
-              }} content='ADD TO CART'/>
+              <Button onClick={addhandleclick} content='ADD TO CART'/>
               <Button content='BUY NOW'/>
             </div>
           </div>

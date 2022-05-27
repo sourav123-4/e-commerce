@@ -1,5 +1,4 @@
 import {  RECEIVE_PRODUCTS, GET_PRODUCT_DETAILS, GET_CATEGORY_DATA, GET_LIMIT_DATA, ADD_NEW_PRODUCT } from "../Action-types/productActionType";
-import React from "react";
 
 const initialState ={ products:[], pdetails:[], limitproducts:[], categorydata:[] }
 
