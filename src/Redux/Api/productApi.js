@@ -12,6 +12,7 @@ export const userData = async()=>{
     try{
         const res=await fetch(`https://fakestoreapi.com/users`);
         const data = await res.json();
+        console.log("users:-",data);
         return data;
     }catch(err){
         console.log(err);

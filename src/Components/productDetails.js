@@ -27,8 +27,8 @@ function ProductDetails() {
               <Image src={state.image} size="medium"/>
               <div className='itemdetails'>
                   <h2>{state.title}</h2>
-                  <h4><span>Price: </span>{state.price}</h4>
-                  <h3><span>Description: </span>{state.description}</h3> 
+                  <h4><span>Price: $ </span>{state.price}</h4>
+                  <h3><span>Description: </span>{state.description}</h3>
               </div>
             </div>
             <div className='btn'>
