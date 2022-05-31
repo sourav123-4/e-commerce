@@ -6,7 +6,8 @@ import { Image } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 import '../Styles/Home.css';
 import { getAllCategories, getLimitProducts, getCategoryProducts, addNewProduct } from '../Redux/Actions/productActions';
-import {fetchAllUsers} from '../Redux/Actions/usersAction';
+import Header from './Header';
+
 function Home() {
   const state = useSelector(state=>state.product.products);
   const limit1 = useSelector( state => state.product.limitproducts)
@@ -18,12 +19,11 @@ function Home() {
     // dispatch(addNewProduct());
     
   },[])
-  React.useEffect(()=>{
-    dispatch(fetchAllUsers());
-  },[])
+  
   state2 && console.log('category',state2);
   return (
     <div>
+      <Header/>
       <Grid>
         {(state && state[0]) && state?.map((product)=>{
           return (

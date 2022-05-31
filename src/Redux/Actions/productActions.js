@@ -4,6 +4,7 @@ import {
     GET_PRODUCT_DETAILS,
     GET_LIMIT_DATA,
     GET_CATEGORY_DATA,
+    RECEIVE_CATEGORY_DATA,
     ADD_NEW_PRODUCT,
 } from "../Action-types/productActionType";
 
@@ -34,12 +35,18 @@ export const getLimitProducts =(number)=>{
     };
 };
 
-export const getCategoryProducts =(category)=>{
+// export const getCategoryProducts =( )=>{
+//     return {
+//         type:GET_CATEGORY_DATA,
+//     };
+// };
+
+export const getCategoryProducts = (category)=>{
     return {
-        type:GET_CATEGORY_DATA,
+        type : GET_CATEGORY_DATA,
         category,
-    };
-};
+    }
+}
 
 export const addNewProduct =()=>{
     return {

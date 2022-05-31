@@ -41,13 +41,16 @@ function* ongetLimitProducts(action){
 }
 
 function* ongetCategoryProducts(action){
+    console.log(action)
     try{
         const data= yield call(fetchCategoryData,action.category);
+        console.log("data==",data)
         yield put(getCategoryProducts(data));
     }catch(err){
         console.log(err);
     }
 }
+
 
 function* onaddNewProducts(action){
     try{

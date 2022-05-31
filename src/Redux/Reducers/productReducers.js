@@ -13,6 +13,7 @@ const PostReducer = (state=initialState,action)=>{
         case GET_LIMIT_DATA:
             return {...state, limitproducts:action.number};
         case GET_CATEGORY_DATA:
+            console.log("receive",action);
             return {...state, categorydata:action.category};
         case ADD_NEW_PRODUCT:
             return {...state, products:[...state.products,action.data]};

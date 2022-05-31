@@ -1,14 +1,16 @@
 import React from 'react'
 import { useState, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useSelector,useDispatch } from 'react-redux';
 import { Form, Button, Checkbox, Input } from 'semantic-ui-react'
+import {fetchAllUsers} from '../Redux/Actions/usersAction';
 function Login() {
   const [details, setdetails] = useState({email: "", password: ""});
   const [formErrors, setFormErrors] = useState({});
   const [isSubmit, setIsSubmit] = useState(false);
   const state = useSelector(state => state.user.users)
   let navigate = useNavigate();
+  let dispatch=useDispatch();
 
   const validate = (values) => {
     const errors = {};
@@ -21,6 +23,10 @@ function Login() {
       return errors;
   };
 
+  React.useEffect(()=>{
+    dispatch(fetchAllUsers());
+  },[])
+
   useEffect(() => {
     localStorage.setItem("details", JSON.stringify(details));
   }, [details]);
@@ -32,7 +38,7 @@ function Login() {
     console.log(details);    
     state.map((item)=>{
       if(item.email === details.email && item.password === details.password){
-        console.log("email",details.email);
+        console.log("email====",details.email);
         navigate("/main");
       }
     })

@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import  Header  from '../src/Components/Header';
-import { Route, Routes } from 'react-router-dom';
+import { useNavigate, Route, Routes } from 'react-router-dom';
 import Home from './Components/Home';
 import Login from './Components/Login';
 import ProductDetails from './Components/productDetails';
@@ -10,10 +10,9 @@ import Main from './Components/Main';
 import Register from './Components/Register';
 import Categories from './Components/catagory';
 function App() {
+  const [item,setItem] = React.useState("");
   return (
     <div className="App">
-      <Header/>
-      <hr/>
       <Routes>
         <Route path='/' element={<Home/>}/>
         <Route path='/:id' element={<ProductDetails/>}/>

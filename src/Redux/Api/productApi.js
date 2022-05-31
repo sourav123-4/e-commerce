@@ -42,7 +42,6 @@ export const fetchLimitData = async(number)=>{
 
 export const fetchCategoryData = async(category)=>{
     try{
-        console.log("c",category);
         const res=await fetch(`https://fakestoreapi.com/products/category/${category}`);
         const data = await res.json();
         console.log("cat",data)

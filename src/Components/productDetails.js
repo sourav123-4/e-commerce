@@ -5,6 +5,7 @@ import { getProductDetails} from '../Redux/Actions/productActions';
 import { Button, Image, Segment } from 'semantic-ui-react';
 import '../Styles/productDetails.css'
 import { addToCart } from '../Redux/Actions/cartAction';
+import Header from './Header';
 
 function ProductDetails() {
 
@@ -20,6 +21,7 @@ function ProductDetails() {
 
   return (
     <div>
+      <Header/>
         {
           state &&  
           <div>
