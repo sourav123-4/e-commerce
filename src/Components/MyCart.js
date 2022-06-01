@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Button, GridColumn, Image } from 'semantic-ui-react';
 import {Grid} from 'semantic-ui-react';
 import { removeFromCart } from '../Redux/Actions/cartAction';
+import { Link } from 'react-router-dom';
 
 function MyCart() {
     const state = useSelector(state => state.cart.mycart);
@@ -21,7 +22,7 @@ function MyCart() {
               </Grid.Column>
               <Grid.Column celled width={3}>
                 <Grid.Row>
-                  <Button positive content="BuyNow"/>
+                  <Link to={localStorage.getItem("details") ? "/buynow": "/login"}><Button positive content='BUY NOW'/></Link>
                 </Grid.Row>
                 <Grid.Row>
                   <Button negative content="Remove" onClick={()=> dispatch(removeFromCart(item))}/>

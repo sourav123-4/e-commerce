@@ -1,4 +1,4 @@
-import { FETCH_ALL_USERS, RECEIVE_ALL_USERS } from "../Action-types/usersActionType";
+import { ADD_USER, FETCH_ALL_USERS, RECEIVE_ALL_USERS } from "../Action-types/usersActionType";
 
 export const fetchAllUsers = () =>{
     return {
@@ -8,6 +8,13 @@ export const fetchAllUsers = () =>{
 export const receiveUsers = (data) => {
     return {
         type : RECEIVE_ALL_USERS,
+        data,
+    }
+}
+
+export const addUser = (data) => {
+    return {
+        type : ADD_USER,
         data,
     }
 }

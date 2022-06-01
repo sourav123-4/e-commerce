@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import  Header  from '../src/Components/Header';
-import { useNavigate, Route, Routes } from 'react-router-dom';
+import { Route, Routes, useLocation } from 'react-router-dom';
 import Home from './Components/Home';
 import Login from './Components/Login';
 import ProductDetails from './Components/productDetails';
@@ -9,18 +9,26 @@ import MyCart from './Components/MyCart';
 import Main from './Components/Main';
 import Register from './Components/Register';
 import Categories from './Components/catagory';
+import BuyNow from './Components/buyNow';
 function App() {
-  const [item,setItem] = React.useState("");
+  const [search,setSearch] = React.useState("");
+  const location = useLocation();
+  const show = !location.pathname.includes("login")
+  const show1 = !location.pathname.includes("register")
   return (
+
     <div className="App">
+      { show && show1 && <Header setSearch={setSearch}/> }
+      {show && show1 && <hr/> }
       <Routes>
-        <Route path='/' element={<Home/>}/>
+        <Route path='/' element={<Home search={search}/>}/>
         <Route path='/:id' element={<ProductDetails/>}/>
         <Route path="/login" element={<Login/>}/>
         <Route path="/mycart" element={<MyCart/>}/>
         <Route path="/main" element={<Main/>}/>
         <Route path="/register" element={<Register/>}/>
-        <Route path='/category/:category' element={<Categories />}/>
+        <Route path='/category/:category' element={<Categories search={search}/>}/>
+        <Route path="/buynow" element={<BuyNow/>}/>
       </Routes>
     </div>
   );

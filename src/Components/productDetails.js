@@ -1,8 +1,8 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import { getProductDetails} from '../Redux/Actions/productActions';
-import { Button, Image, Segment } from 'semantic-ui-react';
+import { Button, Image } from 'semantic-ui-react';
 import '../Styles/productDetails.css'
 import { addToCart } from '../Redux/Actions/cartAction';
 import Header from './Header';
@@ -10,18 +10,23 @@ import Header from './Header';
 function ProductDetails() {
 
   const state = useSelector(state=> state.product.pdetails);
+  const [ cartvalue,setCartvalue ] = React.useState(false)
   let dispatch = useDispatch();
   let params= useParams();
   const addhandleclick = () =>{
-    return dispatch(addToCart(state));
+    dispatch(addToCart(state));
+    setCartvalue(true);
+      
   }
+  // React.useEffect(()=>{
+  //   const details = Json.parse(localStorage.getItem("details"))
+  // },[])
   React.useEffect(() => {
     dispatch(getProductDetails(params.id));
   },[params.id]);
 
   return (
     <div>
-      <Header/>
         {
           state &&  
           <div>
@@ -34,8 +39,11 @@ function ProductDetails() {
               </div>
             </div>
             <div className='btn'>
-              <Button onClick={addhandleclick} content='ADD TO CART'/>
-              <Button content='BUY NOW'/>
+              {cartvalue ? 
+                <Link to={localStorage.getItem("details") ? "/mycart" : "/login"}><Button content="ADD TO CART" /></Link> : 
+                <Button onClick={addhandleclick} content='ADD TO CART' primary/>
+              }
+              <Link to={localStorage.getItem("details") ? "/buynow": "/login"}><Button content='BUY NOW'/></Link>
             </div>
           </div>
         }

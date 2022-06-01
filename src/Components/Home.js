@@ -1,31 +1,33 @@
 import React from 'react'
 import { useSelector,useDispatch } from 'react-redux';
-import { GET_ALL_PRODUCTS } from '../Redux/Action-types/productActionType';
 import { Grid } from 'semantic-ui-react';
 import { Image } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 import '../Styles/Home.css';
-import { getAllCategories, getLimitProducts, getCategoryProducts, addNewProduct } from '../Redux/Actions/productActions';
-import Header from './Header';
+import { getAllCategories, addNewProduct } from '../Redux/Actions/productActions';
 
-function Home() {
+function Home(props) {
   const state = useSelector(state=>state.product.products);
-  const limit1 = useSelector( state => state.product.limitproducts)
   const state2 = useSelector( state => state.product.categorydata)
   let dispatch=useDispatch();
 
   React.useEffect(()=>{
     dispatch(getAllCategories());
     // dispatch(addNewProduct());
-    
   },[])
   
-  state2 && console.log('category',state2);
   return (
     <div>
-      <Header/>
       <Grid>
-        {(state && state[0]) && state?.map((product)=>{
+        {
+          state && state[0] && state
+          .filter((item) => {
+            if(item.title.toLowerCase().includes(props.search.toLowerCase()) 
+            ) {
+                return item;
+            }
+          })
+          .map((product)=>{
           return (
             <Grid.Column width={3}>
               <div className='items'>

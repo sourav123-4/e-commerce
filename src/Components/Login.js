@@ -2,30 +2,30 @@ import React from 'react'
 import { useState, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useSelector,useDispatch } from 'react-redux';
-import { Form, Button, Checkbox, Input } from 'semantic-ui-react'
-import {fetchAllUsers} from '../Redux/Actions/usersAction';
+import { Form, Button, Input, Image } from 'semantic-ui-react'
+import { fetchAllUsers } from '../Redux/Actions/usersAction';
+import logo from '../images/logo.jpg';
 function Login() {
   const [details, setdetails] = useState({email: "", password: ""});
   const [formErrors, setFormErrors] = useState({});
   const [isSubmit, setIsSubmit] = useState(false);
   const state = useSelector(state => state.user.users)
-  let navigate = useNavigate();
-  let dispatch=useDispatch();
-
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const validate = (values) => {
     const errors = {};
     if (!values.email) {
-        errors.email = "Email is required!";
+      errors.email = "Email is required!";
       } 
     else if (values.password.length <=4) {
-        errors.password = "Password is required";
+      errors.password = "Password is required";
       }
-      return errors;
+    return errors;
   };
 
   React.useEffect(()=>{
     dispatch(fetchAllUsers());
-  },[])
+  },[]);
 
   useEffect(() => {
     localStorage.setItem("details", JSON.stringify(details));
@@ -39,13 +39,15 @@ function Login() {
     state.map((item)=>{
       if(item.email === details.email && item.password === details.password){
         console.log("email====",details.email);
-        navigate("/main");
+        navigate("/");
       }
-    })
-  }
+    });
+  };
 
   return (
     <div>
+      <Link to="/"><Image src={logo} size="small"/></Link>
+      <hr/>
       <Form >
         <Form.Field inline>
           <label>Email : </label>
@@ -63,11 +65,11 @@ function Login() {
           />
           <p> {formErrors.password} </p>
         </Form.Field>
-        <Button type='submit' onClick={handleSubmit}>Submit</Button>
+        <Button type='submit' onClick={handleSubmit} primary content="LogIn" />
         <p>Not a user ? <Link to="/register">Register Now</Link></p>
       </Form>
     </div>
-  )
-}
+  );
+};
 
-export default Login
+export default Login;

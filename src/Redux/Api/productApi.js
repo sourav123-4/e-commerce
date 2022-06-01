@@ -40,16 +40,15 @@ export const fetchLimitData = async(number)=>{
 };
 
 
-export const fetchCategoryData = async(category)=>{
+export const productCategoriesFetch = async(category) =>{
     try{
         const res=await fetch(`https://fakestoreapi.com/products/category/${category}`);
         const data = await res.json();
-        console.log("cat",data)
         return data;
     }catch(err){
         console.log(err);
     }
-};
+}
 
 export const addNewData = async()=>{
     try{

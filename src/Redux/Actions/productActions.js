@@ -3,9 +3,8 @@ import {
     RECEIVE_PRODUCTS,
     GET_PRODUCT_DETAILS,
     GET_LIMIT_DATA,
-    GET_CATEGORY_DATA,
-    RECEIVE_CATEGORY_DATA,
     ADD_NEW_PRODUCT,
+    GET_PRODUCTS_CATEGORY_FETCH
 } from "../Action-types/productActionType";
 
 export const getAllCategories = () =>{
@@ -41,12 +40,12 @@ export const getLimitProducts =(number)=>{
 //     };
 // };
 
-export const getCategoryProducts = (category)=>{
+export const getProductCategoryFetch = (category) => {
     return {
-        type : GET_CATEGORY_DATA,
+        type: GET_PRODUCTS_CATEGORY_FETCH,
         category,
     }
-}
+};
 
 export const addNewProduct =()=>{
     return {
