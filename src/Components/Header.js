@@ -3,10 +3,9 @@ import '../Styles/Header.css';
 import logo from '../images/logo.jpg';
 import { Button, Input, Dropdown } from 'semantic-ui-react';
 import { Link, useNavigate } from 'react-router-dom';
-
+import {FormControl, InputLabel, Select, MenuItem } from '@material-ui/core';
 function Header(props) {
-  let navigate = useNavigate();
-  
+  const navigate = useNavigate();
   const options = [
     { key: 1, text: 'electronics', value: "electronics" },
     { key: 2, text: 'jewelery', value: "jewelery"  },
@@ -14,6 +13,7 @@ function Header(props) {
     { key: 4, text: "women's clothing", value: "women's clothing"},
   ];
   const [category,setCategory]=React.useState();
+ 
   const handleChange = (e, {value})=>{
     setCategory(value) ;
     navigate(`/category/${value}`);
@@ -35,7 +35,9 @@ function Header(props) {
           value={category}
         />
         <Input  placeholder='search...' size = 'huge' onChange = { e => props.setSearch(e.target.value) }/>
-        <Button content = 'search' />
+        <Button content = 'search'  />
+        <Input onChange={(e)=>{props.setMin(e.target.value)}}  placeholder="min" style={{width:"50px"}}/>
+        <Input onChange={(e)=>{props.setMax(e.target.value)}} placeholder="max" style={{width:"50px",marginLeft:"2px"}}/>
       </div>
       {
         getItem?.email?

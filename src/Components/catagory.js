@@ -17,10 +17,12 @@ const Categories = (props) => {
     return (
         <div className='category-page'>
             <Grid>
-                {(categories && categories[0]) && categories?.filter((item)=>{
-                    if(item.title.toLowerCase().includes(props.search.toLowerCase()) 
-                    ) {
-                        return item;
+                {(categories && categories[0]) && categories?.filter((item) => {
+                    if(props.search=="" && !props.max && !props.min){
+                    return item
+                    }else if(item.title.toLowerCase().includes(props.search.toLowerCase()) && item.price<=props.max && 
+                        item.price >= props.min){
+                            return item
                     }
                 }).map((product)=>{
                     return (

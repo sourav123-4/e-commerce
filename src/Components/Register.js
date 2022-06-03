@@ -4,6 +4,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import { Form, Input, Button, Image } from 'semantic-ui-react'
 import { addUser } from '../Redux/Actions/usersAction';
 import logo from '../images/logo.jpg';
+import axios from 'axios'
 function Register() {
     const [formErrors, setFormErrors] = React.useState({});
     const navigate = useNavigate();
@@ -16,7 +17,21 @@ function Register() {
         password:"",
         confirmpassword:"",
     })
-    const validate = (values) => {
+
+    const PostData = async (e)=>{
+      const {firstname, lastname, email, password, confirmpassword} = details;
+      fetch("http://localhost:5000/register",{
+        method: "POST",
+        headers: {
+          "content-Type" : "application/json"
+        },
+        body: JSON.stringify({
+          firstname, lastname, email, password, confirmpassword
+        })
+      })
+    }
+
+    const validate =  (values) => {
         const errors = {};
         if (!values.firstname) {
             errors.firstname = "firstname is required!";
@@ -92,7 +107,7 @@ function Register() {
           />
           <p> {formErrors.confirmpassword} </p>
         </Form.Field>
-        <Link to="/"><Button type='submit' onClick={handleSubmit} primary content="Submit" /></Link>
+        <Link to="/"><Button type='submit' onClick={PostData} primary content="Submit" /></Link>
       </Form>
     </div>
   )
