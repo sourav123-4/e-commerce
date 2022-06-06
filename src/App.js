@@ -11,11 +11,12 @@ import Categories from './Components/catagory';
 import BuyNow from './Components/buyNow';
 import AddProduct from './Components/addProduct';
 function App() {
-  const [search,setSearch] = React.useState("");
+  const [search,setSearch] = React.useState('');
   const [price, setPrice] =React.useState('');
   const location = useLocation();
-  const show = !location.pathname.includes("login")
-  const show1 = !location.pathname.includes("register")
+  const show = !location.pathname.includes("login");
+  const show1 = !location.pathname.includes("register");
+  const itemstorage = JSON.parse(localStorage.getItem("details"));
   const [min,setMin] = React.useState(0);
   const [max,setMax] = React.useState(0);
   return (
@@ -37,7 +38,7 @@ function App() {
             max={max}
           />}/>
         <Route path='/:id' element={<ProductDetails/>}/>
-        <Route path="/login" element={<Login/>}/>
+        { !(itemstorage?.email) && <Route path="/login" element={<Login/>}/>}
         <Route path="/mycart" element={<MyCart/>}/>
         <Route path="/register" element={<Register/>}/>
         <Route path="/addproduct" element={<AddProduct/>}/>

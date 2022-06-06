@@ -21,7 +21,7 @@ export const userData = async()=>{
 
 export const fetchOneData = async(id)=>{
     try{
-        const res=await fetch(`https://fakestoreapi.com/products/${id}`);
+        const res=await fetch(`http://localhost:5000/addproducts/products/${id}`);
         const data = await res.json();
         return data;
     }catch(err){
@@ -42,7 +42,7 @@ export const fetchLimitData = async(number)=>{
 
 export const productCategoriesFetch = async(category) =>{
     try{
-        const res=await fetch(`https://fakestoreapi.com/products/category/${category}`);
+        const res=await fetch(`http://localhost:5000/addproducts/${category}`);
         const data = await res.json();
         return data;
     }catch(err){
@@ -50,23 +50,22 @@ export const productCategoriesFetch = async(category) =>{
     }
 }
 
-export const addNewData = async()=>{
+export const addNewData = (products)=>{
     try{
-        const res=await fetch('https://fakestoreapi.com/products',{
+        console.log("hii",products)
+        const {title, price, description, category, image} = products;
+        console.log(title)
+        fetch('http://localhost:5000/addproducts',{
             method:"POST",
+            headers : {
+                "content-type": "application/json"
+            },
             body:JSON.stringify(
                 {
-                    title: 'test product',
-                    price: 13.5,
-                    description: 'lorem ipsum set',
-                    image: 'https://i.pravatar.cc',
-                    category: 'electronic',
+                    title, price, description, category, image
                 },
             ),
         });
-        const data = await res.json();
-        console.log("data:-",data);
-        return data;
     }catch(err){
         console.log("hello error",err);
     }

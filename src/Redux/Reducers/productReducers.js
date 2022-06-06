@@ -19,7 +19,7 @@ const PostReducer = ( state = initialState, action ) => {
     case GET_PRODUCTS_CATEGORY_SUCCESS:
       return { ...state, categories: action.categories };
     case ADD_NEW_PRODUCT:
-      return { ...state, products:[...state.products,action.data]};
+      return { ...state, products:[...state.products,action.products]};
     default:
       return state;
   }

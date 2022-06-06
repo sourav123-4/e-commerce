@@ -3,7 +3,6 @@ import '../Styles/Header.css';
 import logo from '../images/logo.jpg';
 import { Button, Input, Dropdown } from 'semantic-ui-react';
 import { Link, useNavigate } from 'react-router-dom';
-import {FormControl, InputLabel, Select, MenuItem } from '@material-ui/core';
 function Header(props) {
   const navigate = useNavigate();
   const options = [

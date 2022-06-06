@@ -34,12 +34,6 @@ export const getLimitProducts =(number)=>{
     };
 };
 
-// export const getCategoryProducts =( )=>{
-//     return {
-//         type:GET_CATEGORY_DATA,
-//     };
-// };
-
 export const getProductCategoryFetch = (category) => {
     return {
         type: GET_PRODUCTS_CATEGORY_FETCH,
@@ -47,8 +41,9 @@ export const getProductCategoryFetch = (category) => {
     }
 };
 
-export const addNewProduct =()=>{
+export const addNewProduct =(products)=>{
     return {
         type:ADD_NEW_PRODUCT,
+        products,
     };
 };

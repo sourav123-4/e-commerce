@@ -5,7 +5,7 @@ import { getProductDetails} from '../Redux/Actions/productActions';
 import { Button, Image } from 'semantic-ui-react';
 import '../Styles/productDetails.css'
 import { addToCart } from '../Redux/Actions/cartAction';
-import Header from './Header';
+import Loadercomponent from './Loader';
 
 function ProductDetails() {
 
@@ -15,20 +15,15 @@ function ProductDetails() {
   let params= useParams();
   const addhandleclick = () =>{
     dispatch(addToCart(state));
-    setCartvalue(true);
-      
+    setCartvalue(true); 
   }
-  // React.useEffect(()=>{
-  //   const details = Json.parse(localStorage.getItem("details"))
-  // },[])
   React.useEffect(() => {
-    dispatch(getProductDetails(params.id));
-  },[params.id]);
+    dispatch(getProductDetails(params.id))
+  },[params.id])
 
   return (
     <div>
-        {
-          state &&  
+      { (state && state.image) ?   
           <div>
             <div className='item'>
               <Image src={state.image} size="medium"/>
@@ -46,6 +41,8 @@ function ProductDetails() {
               <Link to={localStorage.getItem("details") ? "/buynow": "/login"}><Button content='BUY NOW'/></Link>
             </div>
           </div>
+          :
+          <Loadercomponent/>
         }
     </div>
   )

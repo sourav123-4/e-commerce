@@ -49,7 +49,7 @@ function* getProductCategoryFetch(action) {
 
 function* onaddNewProducts(action){
     try{
-        const data= yield call(addNewData);
+        const data= yield call(addNewData,action.products);
         yield put(addNewProduct(data));
     }catch(err){
         console.log(err);

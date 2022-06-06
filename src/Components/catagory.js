@@ -9,10 +9,10 @@ const Categories = (props) => {
     const params = useParams();
     const categories = useSelector(state => state.product.categories);
     const dispatch = useDispatch();
-
+    const category = params.category;
     useEffect(() => {
-    dispatch(getProductCategoryFetch(params.category))
-    }, [params.category]);
+    dispatch(getProductCategoryFetch(category))
+    }, [category]);
 
     return (
         <div className='category-page'>
@@ -28,7 +28,7 @@ const Categories = (props) => {
                     return (
                     <Grid.Column width={3}>
                         <div className='items'>
-                        <Link to={`/${product.id}`}>
+                        <Link to={`/${product._id}`}>
                             <Image src={product.image} size='small' style={{height:"150px"}}/>
                         </Link>
                         <p>{product.title.substring(0,20) + "..."}</p>

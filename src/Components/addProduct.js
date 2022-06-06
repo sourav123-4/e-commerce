@@ -1,7 +1,11 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Button, Input } from 'semantic-ui-react'
-
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import {addNewProduct} from '../Redux/Actions/productActions'
 function AddProduct() {
+  const dispatch = useDispatch();
+  const [status,setStatus] = useState(false);
     const [products,setProducts]=React.useState({
         title:"",
         price:"",
@@ -9,18 +13,16 @@ function AddProduct() {
         category:"",
         image:"",
     })
-    const Add = async (e)=>{
-        const {title, price, description, category, image} = products;
-        fetch("http://localhost:5000/addproducts",{
-          method: "POST",
-          headers: {
-            "content-Type" : "application/json"
-          },
-          body: JSON.stringify({
-            title, price, description, category, image
-          })
-        })
+    const Add = () =>{
+      setStatus(true)
+    }
+
+    useEffect(()=>{
+      if(status){
+        dispatch(addNewProduct(products))
       }
+    },[])
+    
   return (
     <div>
         <Input placeholder="title" onChange={(e)=>setProducts({...products,title:e.target.value})}/>
